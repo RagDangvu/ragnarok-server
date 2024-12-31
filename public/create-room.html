@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Create Game Room - Invisible War</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="title-container">
+      <h2 class="subtitle">Project RAGNAROK</h2>
+      <h1 class="main-title">Invisible War</h1>
+    </div>
+
+    <div id="room-creator"></div>
+
+    <script type="text/babel">
+      const CreateRoom = () => {
+        const [username, setUsername] = React.useState('');
+        const [roomId, setRoomId] = React.useState('');
+        const [gameLink, setGameLink] = React.useState('');
+        const [error, setError] = React.useState('');
+        const [copied, setCopied] = React.useState(false);
+
+        const handleCreateRoom = () => {
+          if (!username.trim()) {
+            setError('Please enter your username');
+            return;
+          }
+
+          // Tạo room ID ngẫu nhiên
+          const newRoomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+          setRoomId(newRoomId);
+          
+          // Tạo hai link riêng biệt: một cho host và một để share
+          const baseUrl = window.location.origin;
+          const hostGameLink = `${baseUrl}/multiplayer.html?room=${newRoomId}&username=${encodeURIComponent(username)}`;
+          const shareLink = `${baseUrl}/multiplayer.html?room=${newRoomId}`;
+          setGameLink(shareLink);
+
+          // Lưu lại hostGameLink để dùng sau
+          localStorage.setItem('hostGameLink', hostGameLink);
+        };
+
+        const copyLink = () => {
+          navigator.clipboard.writeText(gameLink);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        };
+
+        return (
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="w-full max-w-md bg-black bg-opacity-70 rounded-lg shadow-xl p-6 m-4">
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold text-blue-500">Create Game Room</h2>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Enter your username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 bg-gray-100"
+                    />
+                  </div>
+
+                  {error && (
+                    <div className="p-3 bg-red-900 text-red-100 rounded-md">
+                      {error}
+                    </div>
+                  )}
+
+                  {!roomId && (
+                    <button
+                      onClick={handleCreateRoom}
+                      className="w-full p-3 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors font-bold"
+                    >
+                      Create Room
+                    </button>
+                  )}
+
+                  {gameLink && (
+                    <div className="space-y-4">
+                      <div className="p-3 bg-green-900 text-green-100 rounded-md">
+                        Room created successfully! Share this link with your friend:
+                      </div>
+                      
+                      <div className="flex gap-2">
+                        <input
+                          value={gameLink}
+                          readOnly
+                          className="flex-1 p-3 border border-gray-300 rounded-md bg-gray-100"
+                        />
+                        <button
+                          onClick={copyLink}
+                          className="p-3 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors"
+                        >
+                          Copy
+                        </button>
+                      </div>
+
+                      {copied && (
+                        <div className="p-3 bg-blue-900 text-blue-100 rounded-md">
+                          Link copied to clipboard!
+                        </div>
+                      )}
+
+                      <button 
+                        onClick={() => window.location.href = localStorage.getItem('hostGameLink')}
+                        className="w-full p-3 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors font-bold mt-4"
+                      >
+                        Join Game
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const container = document.getElementById('room-creator');
+      const root = ReactDOM.createRoot(container);
+      root.render(<CreateRoom />);
+    </script>
+  </body>
+</html>

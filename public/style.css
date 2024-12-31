@@ -1,0 +1,690 @@
+body {
+  margin: 0;
+  background-color: #F3F3F3;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+.auth-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.auth-form h2 {
+    color: #FFD523;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.auth-form input {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.auth-form input:focus {
+    outline: 2px solid #FF6B35;
+}
+
+.auth-btn {
+    background-color: #FF6B35;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-btn:hover {
+    background-color: #FF4C29;
+}
+
+.auth-form p {
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.toggle-form {
+    color: #FF6B35;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.toggle-form:hover {
+    color: #FF4C29;
+}
+
+/* Leaderboard Styles */
+.leaderboard-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.leaderboard-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab-btn.active {
+    background: #FF6B35;
+}
+
+.leaderboard-table {
+    width: 100%;
+    color: white;
+    border-collapse: collapse;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-table th {
+    color: #FFD523;
+}
+
+.rank-1 {
+    color: #FFD700;
+}
+
+.rank-2 {
+    color: #C0C0C0;
+}
+
+.rank-3 {
+    color: #CD7F32;
+}
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 66vh;
+}
+
+.splash-title {
+  font-family: 'Bangers', cursive;
+  font-size: 10rem;
+}
+
+.splash-battleship-image {
+  position: absolute;
+  bottom: 5vh;
+  left: 20vw;
+  width: 100%;
+  transform: rotateY(180deg);
+  pointer-events: none;
+  opacity: .25;
+}
+
+.btn {
+  font-size: inherit;
+  background-color: hsl(30, 100%, 50%);
+  padding: .5em 1em;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: .2em;
+  color: #333;
+}
+
+.btn:hover, .btn:focus {
+  background-color: hsl(30, 100%, 40%);
+}
+
+.splash-btn {
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+
+.splash-btn:first-child {
+  margin-left: 0;
+}
+
+.weapon-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.weapon-btn {
+  margin: 1vmin;
+  align-self: start;
+}
+
+.weapon-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Hiệu ứng cho các ô bị rocket bắn trúng */
+.rocket-hit {
+  animation: rocketExplosion 0.5s ease-out forwards;
+}
+
+@keyframes rocketExplosion {
+  0% {
+    transform: scale(1);
+    background-color: #ff4c29;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: #ff6b35;
+  }
+  100% {
+    transform: scale(1);
+    background-color: orange;
+  }
+}
+
+/* Style cho ô đang được nhắm */
+.rocket-target {
+    background-color: rgba(255, 0, 0, 0.3) !important;
+    cursor: crosshair;
+}
+
+/* Style cho các ô xung quanh */
+.rocket-adjacent {
+    background-color: rgba(255, 165, 0, 0.3) !important;
+    cursor: crosshair;
+}
+
+.doc-btn {
+  margin: 1vmin;
+  background-color: #2ecc71;  /* Màu xanh lá nhạt */
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.doc-btn:hover {
+  background-color: #27ae60;  /* Màu xanh lá đậm khi hover */
+}
+
+/* Điều chỉnh container để nút nằm cùng hàng */
+div[align="center"] {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 1vmin 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.battleship-grid {
+  margin: 1vmin;
+  display: grid;
+  background-color: rgba(0, 100, 200, 0.8);
+  grid-template-rows: repeat(13, 3.5vmin);
+  grid-template-columns: repeat(13, 3.5vmin);
+}
+
+.grid-computer > .taken,
+.grid-computer > .boom {
+  background-color: rgba(0, 100, 200, 0.0); !important;
+  border-radius: 0 !important;
+}
+
+.taken,
+.ship {
+  position: relative;
+  background-color: hsl(0, 0%, 80%);
+}
+
+.taken.start.vertical,
+.taken.start.vertical::before {
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.taken.end.vertical,
+.taken.end.vertical::before {
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.taken.start.horizontal,
+.taken.start.horizontal::before {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.taken.end.horizontal,
+.taken.end.horizontal::before {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.taken.vertical::before,
+.taken.horizontal::before {
+  content: '';
+  position: absolute;
+  border: .3vmin solid white;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+}
+
+.taken.horizontal::before {
+  animation: ripplesY 3s linear infinite;
+  border-left: none;
+  border-right: none;
+}
+
+.taken.vertical::before {
+  animation: ripplesX 3s linear infinite;
+  border-top: none;
+  border-bottom: none;
+}
+
+@keyframes ripplesX {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(1.5);
+  }
+}
+
+@keyframes ripplesY {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(1.5);
+  }
+}
+
+.grid-display {
+  display: flex;
+}
+
+.ship > div {
+  width: 3.5vmin;
+  height: 3.5vmin;
+}
+
+.ship {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1vmin;
+  width: calc(3.5vmin * var(--width, 1));
+  height: calc(3.5vmin * var(--height, 1));
+  border-radius: 2.3vmin;
+background-color: rgba(255, 255, 255, 0.4); /* Layer trắng mờ */
+  background-blend-mode: overlay;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.battleship-grid div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+}
+
+.destroyer-container {
+  --width: 2;
+  background-image: url('../images/destroyer2.PNG');
+}
+
+.destroyer-container-vertical {
+  --height: 2;
+  --width: 1;
+  background-image: url('../images/destroyer.PNG');
+}
+
+.frigate-container  {
+  --width: 3;
+  background-image: url('../images/frigate2.PNG');
+}
+
+.frigate-container-vertical  {
+  --height: 3;
+  --width: 1;
+  background-image: url('../images/frigate.PNG');
+}
+
+.cruiser-container {
+  --width: 3;
+  background-image: url('../images/cruiser2.PNG');
+}
+
+.cruiser-container-vertical {
+  --height: 3;
+  --width: 1;
+  background-image: url('../images/cruiser.PNG');
+}
+
+.battleship-container {
+  --width: 4;
+  background-image: url('../images/battleship2.PNG');
+}
+
+.battleship-container-vertical {
+  --height: 4;
+  --width: 1;
+  background-image: url('../images/battleship.PNG');
+}
+
+.leviathan-container {
+  --width: 5;
+  background-image: url('../images/leviathan2.PNG');
+}
+
+.leviathan-container-vertical {
+  --height: 5;
+  --width: 1;
+  background-image: url('../images/leviathan.PNG');
+}
+
+.hidden-info {
+  font-size: 1.2rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-text {
+  margin: 0.7rem;
+}
+
+.miss,
+.boom, .miss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hiệu ứng cho miss */
+.miss::before {
+  content: '';
+  position: absolute;
+  animation: hit .2s ease-out forwards;
+  border: 1vmin solid white;
+  border-radius: 100%;
+  width: 2vmin;
+  height: 2vmin;
+}
+
+.miss::after {
+  content: '';
+  position: absolute;
+  border-radius: 100%;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: white;
+}
+
+/* Hiệu ứng lửa cho boom */
+.boom::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, 
+    #ff6b35 0%, 
+    #ff4c29 40%, 
+    #ff3311 60%, 
+    transparent 70%
+  );
+  animation: fire 0.5s ease-out infinite alternate;
+}
+
+.boom::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, 
+    #fff 0%, 
+    #ffdd00 30%, 
+    transparent 70%
+  );
+  animation: innerFire 0.5s ease-out infinite alternate;
+}
+
+@keyframes fire {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes innerFire {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes hit {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.player {
+  margin: 2vmin;
+}
+
+.connected, .ready {
+  font-weight: normal;
+  opacity: .25;
+  text-decoration: line-through;
+}
+
+.connected.active,
+.ready.active {
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* Thêm vào đầu file style.css, ngay sau phần body {...} */
+
+.title-container {
+  text-align: center;
+  padding: 40px 0;
+  margin-bottom: 0px;
+}
+
+.main-title {
+  font-family: 'Bangers', cursive;
+  font-size: 5rem;
+  color: #FF4C29;
+  text-shadow: 3px 3px 0 #000;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #FFD523;
+  text-shadow: 2px 2px 0 #000;
+  margin: 10px 0 0 0;
+}
+
+/* Sửa lại phần body trong style.css */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+              url('../images/ship.JPG');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Điều chỉnh style cho tên người chơi */
+.player {
+  margin: 0.1vmin;
+  font-size: 1.3rem; /* Tăng kích thước font */
+  color: #FFD523; /* Màu vàng sáng */
+  text-shadow: 2px 2px 0 #000; /* Thêm viền đen để dễ đọc */
+}
+
+/* Điều chỉnh các nút */
+.btn {
+  font-size: 1.2rem; /* Tăng kích thước chữ */
+  background-color: #FF6B35; /* Màu cam đậm hơn */
+  color: white; /* Chữ màu trắng */
+  padding: .7em 1.5em; /* Padding lớn hơn */
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+.btn:hover, .btn:focus {
+  background-color: #FF4C29; /* Màu cam tối hơn khi hover */
+}
+
+.new-game-btn {
+  margin-top: 10px;
+  background-color: #2ecc71;
+  font-size: 1.2rem;
+  padding: 0.5em 1.2em;
+}
+
+.new-game-btn:hover {
+  background-color: #27ae60;
+}
+
+/* Điều chỉnh text thông báo */
+.info-text {
+  color: #E8F6EF; /* Màu trắng hơi xanh */
+  font-size: 1.3rem; /* Tăng kích thước */
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  margin: 0.4rem;
+}
+
+/* Điều chỉnh trạng thái connected và ready */
+.connected, .ready {
+  color: #B8DFD8; /* Màu sáng nhạt */
+  opacity: 0.6; /* Giảm độ mờ */
+}
+
+.connected.active,
+.ready.active {
+  color: #4FD3C4; /* Màu xanh sáng khi active */
+  opacity: 1;
+  font-weight: bold;
+}
+
+/* Điều chỉnh container chứa thông tin */
+.hidden-info {
+  background-color: rgba(0, 0, 0, 0.5); /* Thêm background mờ */
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.battleship-grid div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+}
+
+.battleship-grid {
+  margin: 1vmin;
+  display: grid;
+  background-color: rgba(0, 100, 200, 0.8);
+  grid-template-rows: repeat(13, 3.5vmin);
+  grid-template-columns: repeat(13, 3.5vmin);
+}
+
+.ship-destroyed {
+  position: relative;
+}
+
+.ship-destroyed::after {
+  content: '';
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  transition: background-color 0.5s ease;
+}
+
+/* Đảm bảo hiệu ứng boom vẫn hiển thị trên lớp tối */
+.ship-destroyed.boom::before,
+.ship-destroyed.boom::after {
+  z-index: 2;
+}
+
+.sound-btn {
+  margin: 1vmin;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5em 1em;
+  transition: background-color 0.3s ease;
+}
+
+.sound-btn:hover {
+  background-color: #357abd;
+}
+
+.sound-btn:active {
+  transform: scale(0.95);
+}

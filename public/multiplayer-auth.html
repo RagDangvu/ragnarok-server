@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Invisible War</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
+    <script>
+      // Kiểm tra URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const roomId = urlParams.get('room');
+      const username = urlParams.get('username');
+      
+      // Nếu không có room ID, chuyển về trang tạo phòng
+      if (!roomId) {
+        window.location.href = '/create-room.html';
+      }
+
+      // Nếu có username, chuyển thẳng vào game
+      if (username) {
+        window.location.href = `/multiplayer.html?room=${roomId}&username=${username}`;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="title-container">
+      <h2 class="subtitle">Project RAGNAROK</h2>
+      <h1 class="main-title">Invisible War</h1>
+    </div>
+
+    <div class="auth-container">
+      <form class="auth-form" id="username-form">
+        <h2>Enter Your Username</h2>
+        <input type="text" id="username-input" placeholder="Username" required>
+        <button type="submit" class="auth-btn">Join Game</button>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById('username-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username-input').value.trim();
+        if (username) {
+          window.location.href = `/multiplayer.html?room=${roomId}&username=${encodeURIComponent(username)}`;
+        }
+      });
+    </script>
+  </body>
+</html>
