@@ -270,7 +270,7 @@
 
             <div className="content-section">
               <h2>{selectedContent.introduction.title}</h2>
-              <p className="mb-4">
+              <p className="mb-4" dangerouslySetInnerHTML={{ __html: selectedContent.introduction.content }}></p>
                 "Invisible War" is a minigame within the Project RAGNAROK boardgame project, which is developed by{' '}
                 <a href="https://astronomy.vn" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-blue-300">
                   Vietnam Astronomy and Cosmology Association (VACA)
