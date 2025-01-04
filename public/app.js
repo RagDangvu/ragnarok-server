@@ -205,7 +205,7 @@ if (gameMode === 'singlePlayer') {
   }
 
   // Khởi tạo socket với thông tin phòng
-  const socket = io({
+  const socket = io("https://ragnarok-server.onrender.com");{
     query: {
       roomId: urlParams.get('room'),
       username: urlParams.get('username')
