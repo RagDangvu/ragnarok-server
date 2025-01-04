@@ -688,3 +688,21 @@ body {
 .sound-btn:active {
   transform: scale(0.95);
 }
+
+.rotate-btn {
+  margin: 1vmin;
+  background-color: #9b59b6;  /* Màu tím nhạt */
+  color: white;
+  display: none;  /* Ẩn mặc định trên desktop */
+}
+
+.rotate-btn:hover {
+  background-color: #8e44ad;  /* Màu tím đậm khi hover */
+}
+
+/* Chỉ hiển thị nút trên thiết bị di động */
+@media screen and (max-width: 768px) {
+  .rotate-btn {
+    display: inline-block;
+  }
+}
