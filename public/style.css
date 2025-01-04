@@ -371,57 +371,57 @@ background-color: rgba(255, 255, 255, 0.4); /* Layer trắng mờ */
 
 .destroyer-container {
   --width: 2;
-  background-image: url('../images/destroyer2.PNG');
+  background-image: url('/images/destroyer2.PNG');
 }
 
 .destroyer-container-vertical {
   --height: 2;
   --width: 1;
-  background-image: url('../images/destroyer.PNG');
+  background-image: url('/images/destroyer.PNG');
 }
 
 .frigate-container  {
   --width: 3;
-  background-image: url('../images/frigate2.PNG');
+  background-image: url('/images/frigate2.PNG');
 }
 
 .frigate-container-vertical  {
   --height: 3;
   --width: 1;
-  background-image: url('../images/frigate.PNG');
+  background-image: url('/images/frigate.PNG');
 }
 
 .cruiser-container {
   --width: 3;
-  background-image: url('../images/cruiser2.PNG');
+  background-image: url('/images/cruiser2.PNG');
 }
 
 .cruiser-container-vertical {
   --height: 3;
   --width: 1;
-  background-image: url('../images/cruiser.PNG');
+  background-image: url('/images/cruiser.PNG');
 }
 
 .battleship-container {
   --width: 4;
-  background-image: url('../images/battleship2.PNG');
+  background-image: url('/images/battleship2.PNG');
 }
 
 .battleship-container-vertical {
   --height: 4;
   --width: 1;
-  background-image: url('../images/battleship.PNG');
+  background-image: url('/images/battleship.PNG');
 }
 
 .leviathan-container {
   --width: 5;
-  background-image: url('../images/leviathan2.PNG');
+  background-image: url('/images/leviathan2.PNG');
 }
 
 .leviathan-container-vertical {
   --height: 5;
   --width: 1;
-  background-image: url('../images/leviathan.PNG');
+  background-image: url('/images/leviathan.PNG');
 }
 
 .hidden-info {
@@ -570,7 +570,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-              url('../images/ship.JPG');
+              url('/images/ship.JPG');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
