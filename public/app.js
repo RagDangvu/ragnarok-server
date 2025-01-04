@@ -35,6 +35,27 @@ const muteBtn = document.getElementById('mute-btn');
     muteBtn.addEventListener('click', toggleSound);
   }
 
+const rotateScreenBtn = document.getElementById('rotate-screen-btn');
+if (rotateScreenBtn) {
+  rotateScreenBtn.addEventListener('click', () => {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    }
+    
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape')
+        .catch(err => {
+          console.log('Không thể xoay màn hình:', err);
+          // Hiển thị hướng dẫn nếu không thể tự động xoay
+          alert('Please rotate your device manually to landscape mode for better gameplay experience.');
+        });
+    } else {
+      // Fallback cho các trình duyệt không hỗ trợ orientation lock
+      alert('Please rotate your device manually to landscape mode for better gameplay experience.');
+    }
+  });
+}
+  
 // Khai báo âm thanh
 const sounds = {
   start: new Audio('./sounds/sound1.mp3'),
