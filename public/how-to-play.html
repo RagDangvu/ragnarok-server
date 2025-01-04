@@ -1,4 +1,93 @@
-const HowToPlay = () => {
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>How To Play - Invisible War</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .instruction-section {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        color: white;
+      }
+      
+      .language-btn {
+        background-color: #FF6B35;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.3s;
+      }
+      
+      .language-btn:hover {
+        background-color: #FF4C29;
+      }
+      
+      .language-btn.active {
+        background-color: #2ecc71;
+      }
+      
+      .content-section {
+        margin-top: 20px;
+      }
+      
+      .content-section h2 {
+        color: #FFD523;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+      }
+      
+      .content-section h3 {
+        color: #4FD3C4;
+        margin: 15px 0 10px 0;
+        font-size: 1.2em;
+      }
+      
+      .content-section ul {
+        margin-left: 20px;
+        list-style-type: disc;
+      }
+      
+      .content-section li {
+        margin: 5px 0;
+      }
+      
+      .content-section a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .content-section a:hover {
+        color: #4FD3C4;
+      }
+      
+      .sub-list {
+        margin-left: 40px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title-container">
+      <h2 class="subtitle">Project RAGNAROK</h2>
+      <h1 class="main-title">Invisible War</h1>
+    </div>
+
+    <div id="how-to-play"></div>
+
+    <script type="text/babel">
+      const HowToPlay = () => {
   const [language, setLanguage] = React.useState('en');
   
   const content = {
@@ -215,3 +304,10 @@ const HowToPlay = () => {
     </div>
   );
 };
+
+      const container = document.getElementById('how-to-play');
+      const root = ReactDOM.createRoot(container);
+      root.render(<HowToPlay />);
+    </script>
+  </body>
+</html>
