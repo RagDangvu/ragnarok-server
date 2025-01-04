@@ -1,315 +1,217 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>How To Play - Invisible War</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-      .instruction-section {
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 20px auto;
-        max-width: 800px;
-        color: white;
+const HowToPlay = () => {
+  const [language, setLanguage] = React.useState('en');
+  
+  const content = {
+    en: {
+      introduction: {
+        title: "Game Introduction",
+        content: [
+          `"Invisible War" is a minigame within the Project RAGNAROK boardgame project, which is developed by Vietnam Astronomy and Cosmology Association (VACA). Inspired by the classic Battleship game, Invisible War takes players into intense space battles where space fleets face off in the darkness of the universe.`,
+          `Battleship originated as a paper game from World War I, developed in France around 1914, allowing navy soldiers to simulate battles on paper, similar to when they had to fire at targets not clearly visible at sea.`,
+          `Incorporating the space theme, Invisible War has transformed the setting from naval battles on oceans to confrontations between space fleets in the interplanetary era.`
+        ]
+      },
+      structure: {
+        title: "Basic Structure",
+        items: [
+          "Space Battlefield: 13x13 grid, simulating an area in space",
+          "Two combat modes: Single Player (versus AI) and Multiplayer (versus other players)",
+          "Battle room system in multiplayer mode"
+        ]
+      },
+      fleet: {
+        title: "Space Fleet",
+        items: [
+          "Destroyer (2 squares) - small but agile",
+          "Frigate (3 squares) - balanced between speed and firepower",
+          "Cruiser (3 squares) - medium armor with strong firepower",
+          "Battleship (4 squares) - mobile fortress",
+          "Leviathan (5 squares) - fleet flagship"
+        ]
+      },
+      weapons: {
+        title: "Weapons and Technology",
+        items: [
+          "Photon guns for precise point targeting",
+          "03 interplanetary missiles with cross-shaped attack zone",
+          "Advanced targeting system"
+        ]
+      },
+      effects: {
+        title: "Battlefield Effects",
+        items: [
+          "Engine startup sounds at game start",
+          "Hit/miss sounds in space",
+          "Explosion effects when ships are destroyed",
+          "Space debris effects for destroyed ships"
+        ]
+      },
+      howToPlay: {
+        title: "How To Play",
+        starting: {
+          title: "Getting Started",
+          items: [
+            "Choose game mode:",
+            ["Singleplayer: practice with computer",
+             "Multiplayer: direct combat with other players"],
+            "In multiplayer:",
+            ["Enter name and click 'Create Game Room'",
+             "Copy the provided link for second player",
+             "Second player follows link and enters name",
+             "Click 'Start Game' when both players are ready"]
+          ]
+        },
+        battle: {
+          title: "During Battle",
+          items: [
+            "Take turns attacking",
+            "Choose between regular attacks or missiles",
+            "Aim carefully with missiles",
+            "Watch for ship destruction notifications",
+            "Battle ends when one fleet is destroyed",
+            "Click 'New Game' for rematch or return to main page"
+          ]
+        }
       }
-      
-      .language-btn {
-        background-color: #FF6B35;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 5px;
-        transition: background-color 0.3s;
+    },
+    vi: {
+      introduction: {
+        title: "Giới thiệu về trò chơi",
+        content: [
+          `"Invisible War" là một minigame trong dự án boardgame Project RAGNAROK, được phát triển bởi Hội Thiên văn và Vũ trụ học Việt Nam (VACA). Lấy cảm hứng từ trò chơi Battleship cổ điển, Invisible War đưa người chơi vào những trận chiến không gian căng thẳng, nơi các hạm đội tàu chiến không gian đối đầu trong bóng tối của vũ trụ.`,
+          `Battleship có nguồn gốc là một trò chơi giấy từ Thế Chiến I, được phát triển ở Pháp khoảng năm 1914, để những người lính hải quân có thể đánh một trận chiến tưởng tượng trên giấy, giống như khi họ phải bắn vào những mục tiêu chưa được nhìn rõ trên biển.`,
+          `Kết hợp vào đề tài không gian, Invisible War đã chuyển bối cảnh từ các trận hải chiến trên đại dương thành những cuộc đối đầu giữa các hạm đội không gian trong kỷ nguyên liên hành tinh.`
+        ]
+      },
+      structure: {
+        title: "Cấu trúc cơ bản",
+        items: [
+          "Chiến trường không gian: Lưới 13x13 ô, mô phỏng một khu vực trong không gian",
+          "Hai chế độ tác chiến: Single Player (đấu với AI) và Multiplayer (đấu với người chơi khác)",
+          "Hệ thống phòng chiến đấu trong chế độ multiplayer"
+        ]
+      },
+      fleet: {
+        title: "Hạm đội không gian",
+        items: [
+          "Destroyer (2 ô) - nhỏ nhưng linh hoạt",
+          "Frigate (3 ô) - cân bằng giữa tốc độ và hỏa lực",
+          "Cruiser (3 ô) - thiết giáp vừa với hỏa lực mạnh",
+          "Battleship (4 ô) - pháo đài di động",
+          "Leviathan (5 ô) - con tàu chủ lực của hạm đội"
+        ]
+      },
+      weapons: {
+        title: "Vũ khí và Công nghệ",
+        items: [
+          "Súng photon để bắn chính xác vào từng điểm",
+          "03 tên lửa liên hành tinh với vùng tấn công hình chữ thập",
+          "Hệ thống ngắm tiên tiến"
+        ]
+      },
+      effects: {
+        title: "Hiệu ứng Chiến trường",
+        items: [
+          "Âm thanh khởi động động cơ khi bắt đầu",
+          "Âm thanh bắn trúng/trượt trong không gian",
+          "Hiệu ứng nổ khi phá hủy tàu",
+          "Hiệu ứng tàn tích không gian cho các tàu bị phá hủy"
+        ]
+      },
+      howToPlay: {
+        title: "Hướng dẫn chơi",
+        starting: {
+          title: "Khởi đầu",
+          items: [
+            "Lựa chọn chế độ chơi:",
+            ["Singleplayer: luyện tập với máy tính",
+             "Multiplayer: đấu trực tiếp với người chơi khác"],
+            "Trong multiplayer:",
+            ["Nhập tên và ấn 'Create Game Room'",
+             "Copy link được cung cấp cho người chơi thứ hai",
+             "Người chơi thứ hai vào link và nhập tên",
+             "Ấn 'Start Game' khi cả hai đã sẵn sàng"]
+          ]
+        },
+        battle: {
+          title: "Trong trận chiến",
+          items: [
+            "Luân phiên tấn công",
+            "Lựa chọn giữa đòn tấn công thường hoặc tên lửa",
+            "Ngắm bắn cẩn thận khi dùng tên lửa",
+            "Theo dõi thông báo khi phá hủy tàu",
+            "Trận đấu kết thúc khi một bên bị tiêu diệt",
+            "Ấn 'New Game' để đấu lại hoặc quay về trang chính"
+          ]
+        }
       }
-      
-      .language-btn:hover {
-        background-color: #FF4C29;
-      }
-      
-      .language-btn.active {
-        background-color: #2ecc71;
-      }
-      
-      .content-section {
-        margin-top: 20px;
-      }
-      
-      .content-section h2 {
-        color: #FFD523;
-        margin-bottom: 15px;
-        font-size: 1.5em;
-      }
-      
-      .content-section h3 {
-        color: #4FD3C4;
-        margin: 15px 0 10px 0;
-        font-size: 1.2em;
-      }
-      
-      .content-section ul {
-        margin-left: 20px;
-        list-style-type: disc;
-      }
-      
-      .content-section li {
-        margin: 5px 0;
-      }
-      
-      .content-section a {
-        color: inherit;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
+    }
+  };
 
-      .content-section a:hover {
-        color: #4FD3C4;
-      }
-      
-      .sub-list {
-        margin-left: 40px !important;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="title-container">
-      <h2 class="subtitle">Project RAGNAROK</h2>
-      <h1 class="main-title">Invisible War</h1>
+  const renderList = (items) => {
+    return (
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {Array.isArray(item) ? (
+              <ul className="sub-list">
+                {item.map((subItem, subIndex) => (
+                  <li key={subIndex}>{subItem}</li>
+                ))}
+              </ul>
+            ) : (
+              item
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  const selectedContent = content[language];
+
+  return (
+    <div className="instruction-section">
+      <div className="text-center mb-4">
+        <button 
+          className={`language-btn ${language === 'en' ? 'active' : ''}`}
+          onClick={() => setLanguage('en')}
+        >
+          English
+        </button>
+        <button 
+          className={`language-btn ${language === 'vi' ? 'active' : ''}`}
+          onClick={() => setLanguage('vi')}
+        >
+          Vietnamese
+        </button>
+      </div>
+
+      <div className="content-section">
+        <h2>{selectedContent.introduction.title}</h2>
+        {selectedContent.introduction.content.map((paragraph, index) => (
+          <p key={index} className="mb-4">{paragraph}</p>
+        ))}
+
+        <h2>{selectedContent.structure.title}</h2>
+        {renderList(selectedContent.structure.items)}
+
+        <h2>{selectedContent.fleet.title}</h2>
+        {renderList(selectedContent.fleet.items)}
+
+        <h2>{selectedContent.weapons.title}</h2>
+        {renderList(selectedContent.weapons.items)}
+
+        <h2>{selectedContent.effects.title}</h2>
+        {renderList(selectedContent.effects.items)}
+
+        <h2>{selectedContent.howToPlay.title}</h2>
+        <h3>{selectedContent.howToPlay.starting.title}</h3>
+        {renderList(selectedContent.howToPlay.starting.items)}
+
+        <h3>{selectedContent.howToPlay.battle.title}</h3>
+        {renderList(selectedContent.howToPlay.battle.items)}
+      </div>
     </div>
-
-    <div id="how-to-play"></div>
-
-    <script type="text/babel">
-      const HowToPlay = () => {
-        const [language, setLanguage] = React.useState('en');
-        
-        const content = {
-          en: {
-            introduction: {
-              title: "Game Introduction",
-              content: `"Invisible War" is a minigame within the Project RAGNAROK boardgame project, which is developed by <a href="https://astronomy.vn" target="_blank" className="font-bold hover:text-blue-300">Vietnam Astronomy and Cosmology Association (VACA)</a>. Inspired by the classic Battleship game, Invisible War takes players into intense space battles where space fleets face off in the darkness of the universe.\n\nBattleship originated as a paper game from World War I, developed in France around 1914, allowing navy soldiers to simulate battles on paper, similar to when they had to fire at targets not clearly visible at sea.\n\nIncorporating the space theme, Invisible War has transformed the setting from naval battles on oceans to confrontations between space fleets in the interplanetary era.`
-            },
-            structure: {
-              title: "Basic Structure",
-              items: [
-                "Space Battlefield: 13x13 grid, simulating an area in space",
-                "Two combat modes: Single Player (versus AI) and Multiplayer (versus other players)",
-                "Battle room system in multiplayer mode"
-              ]
-            },
-            fleet: {
-              title: "Space Fleet",
-              items: [
-                "Destroyer (2 squares) - small but agile",
-                "Frigate (3 squares) - balanced between speed and firepower",
-                "Cruiser (3 squares) - medium armor with strong firepower",
-                "Battleship (4 squares) - mobile fortress",
-                "Leviathan (5 squares) - fleet flagship"
-              ]
-            },
-            weapons: {
-              title: "Weapons and Technology",
-              items: [
-                "Photon guns for precise point targeting",
-                "03 interplanetary missiles with cross-shaped attack zone",
-                "Advanced targeting system"
-              ]
-            },
-            effects: {
-              title: "Battlefield Effects",
-              items: [
-                "Engine startup sounds at game start",
-                "Hit/miss sounds in space",
-                "Explosion effects when ships are destroyed",
-                "Space debris effects for destroyed ships"
-              ]
-            },
-            howToPlay: {
-              title: "How To Play",
-              starting: {
-                title: "Getting Started",
-                items: [
-                  "Choose game mode:",
-                  ["Singleplayer: practice with computer",
-                   "Multiplayer: direct combat with other players"],
-                  "In multiplayer:",
-                  ["Enter name and click 'Create Game Room'",
-                   "Copy the provided link for second player",
-                   "Second player follows link and enters name",
-                   "Click 'Start Game' when both players are ready"]
-                ]
-              },
-              battle: {
-                title: "During Battle",
-                items: [
-                  "Take turns attacking",
-                  "Choose between regular attacks or missiles",
-                  "Aim carefully with missiles",
-                  "Watch for ship destruction notifications",
-                  "Battle ends when one fleet is destroyed",
-                  "Click 'New Game' for rematch or return to main page"
-                ]
-              }
-            }
-          },
-          vi: {
-            introduction: {
-              title: "Giới thiệu về trò chơi",
-              content: `Invisible War là một minigame trong dự án boardgame Project RAGNAROK, được phát triển bởi <a href="https://thienvanvietnam.org" target="_blank" className="font-bold hover:text-blue-300">Hội Thiên văn và Vũ trụ học Việt Nam (VACA)</a>. Lấy cảm hứng từ trò chơi Battleship cổ điển, Invisible War đưa người chơi vào những trận chiến không gian căng thẳng, nơi các hạm đội tàu chiến không gian đối đầu trong bóng tối của vũ trụ.\n\nBattleship có nguồn gốc là một trò chơi giấy từ Thế Chiến I, được phát triển ở Pháp khoảng năm 1914, để những người lính hải quân có thể đánh một trận chiến tưởng tượng trên giấy, giống như khi họ phải bắn vào những mục tiêu chưa được nhìn rõ trên biển.\n\nKết hợp vào đề tài không gian, Invisible War đã chuyển bối cảnh từ các trận hải chiến trên đại dương thành những cuộc đối đầu giữa các hạm đội không gian trong kỷ nguyên liên hành tinh.`
-            },
-            structure: {
-              title: "Cấu trúc cơ bản",
-              items: [
-                "Chiến trường không gian: Lưới 13x13 ô, mô phỏng một khu vực trong không gian",
-                "Hai chế độ tác chiến: Single Player (đấu với AI) và Multiplayer (đấu với người chơi khác)",
-                "Hệ thống phòng chiến đấu trong chế độ multiplayer"
-              ]
-            },
-            fleet: {
-              title: "Hạm đội không gian",
-              items: [
-                "Destroyer (2 ô) - nhỏ nhưng linh hoạt",
-                "Frigate (3 ô) - cân bằng giữa tốc độ và hỏa lực",
-                "Cruiser (3 ô) - thiết giáp vừa với hỏa lực mạnh",
-                "Battleship (4 ô) - pháo đài di động",
-                "Leviathan (5 ô) - con tàu chủ lực của hạm đội"
-              ]
-            },
-            weapons: {
-              title: "Vũ khí và Công nghệ",
-              items: [
-                "Súng photon để bắn chính xác vào từng điểm",
-                "03 tên lửa liên hành tinh với vùng tấn công hình chữ thập",
-                "Hệ thống ngắm tiên tiến"
-              ]
-            },
-            effects: {
-              title: "Hiệu ứng Chiến trường",
-              items: [
-                "Âm thanh khởi động động cơ khi bắt đầu",
-                "Âm thanh bắn trúng/trượt trong không gian",
-                "Hiệu ứng nổ khi phá hủy tàu",
-                "Hiệu ứng tàn tích không gian cho các tàu bị phá hủy"
-              ]
-            },
-            howToPlay: {
-              title: "Hướng dẫn chơi",
-              starting: {
-                title: "Khởi đầu",
-                items: [
-                  "Lựa chọn chế độ chơi:",
-                  ["Singleplayer: luyện tập với máy tính",
-                   "Multiplayer: đấu trực tiếp với người chơi khác"],
-                  "Trong multiplayer:",
-                  ["Nhập tên và ấn 'Create Game Room'",
-                   "Copy link được cung cấp cho người chơi thứ hai",
-                   "Người chơi thứ hai vào link và nhập tên",
-                   "Ấn 'Start Game' khi cả hai đã sẵn sàng"]
-                ]
-              },
-              battle: {
-                title: "Trong trận chiến",
-                items: [
-                  "Luân phiên tấn công",
-                  "Lựa chọn giữa đòn tấn công thường hoặc tên lửa",
-                  "Ngắm bắn cẩn thận khi dùng tên lửa",
-                  "Theo dõi thông báo khi phá hủy tàu",
-                  "Trận đấu kết thúc khi một bên bị tiêu diệt",
-                  "Ấn 'New Game' để đấu lại hoặc quay về trang chính"
-                ]
-              }
-            }
-          }
-        };
-
-        const renderList = (items) => {
-          return (
-            <ul>
-              {items.map((item, index) => (
-                <li key={index}>
-                  {Array.isArray(item) ? (
-                    <ul className="sub-list">
-                      {item.map((subItem, subIndex) => (
-                        <li key={subIndex}>{subItem}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    item
-                  )}
-                </li>
-              ))}
-            </ul>
-          );
-        };
-
-        const selectedContent = content[language];
-
-        return (
-          <div className="instruction-section">
-            <div className="text-center mb-4">
-              <button 
-                className={`language-btn ${language === 'en' ? 'active' : ''}`}
-                onClick={() => setLanguage('en')}
-              >
-                English
-              </button>
-              <button 
-                className={`language-btn ${language === 'vi' ? 'active' : ''}`}
-                onClick={() => setLanguage('vi')}
-              >
-                Vietnamese
-              </button>
-            </div>
-
-            <div className="content-section">
-              <h2>{selectedContent.introduction.title}</h2>
-              <p className="mb-4" dangerouslySetInnerHTML={{ __html: selectedContent.introduction.content }}></p>
-                "Invisible War" is a minigame within the Project RAGNAROK boardgame project, which is developed by{' '}
-                <a href="https://astronomy.vn" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-blue-300">
-                  Vietnam Astronomy and Cosmology Association (VACA)
-                </a>
-                . Inspired by the classic Battleship game, Invisible War takes players into intense space battles where space fleets face off in the darkness of the universe.
-              </p>
-              <p className="mb-4">
-                Battleship originated as a paper game from World War I, developed in France around 1914, allowing navy soldiers to simulate battles on paper, similar to when they had to fire at targets not clearly visible at sea.
-              </p>
-              <p className="mb-4">
-                Incorporating the space theme, Invisible War has transformed the setting from naval battles on oceans to confrontations between space fleets in the interplanetary era.
-              </p>
-
-              <h2>{selectedContent.structure.title}</h2>
-              {renderList(selectedContent.structure.items)}
-
-              <h2>{selectedContent.fleet.title}</h2>
-              {renderList(selectedContent.fleet.items)}
-
-              <h2>{selectedContent.weapons.title}</h2>
-              {renderList(selectedContent.weapons.items)}
-
-              <h2>{selectedContent.effects.title}</h2>
-              {renderList(selectedContent.effects.items)}
-
-              <h2>{selectedContent.howToPlay.title}</h2>
-              <h3>{selectedContent.howToPlay.starting.title}</h3>
-              {renderList(selectedContent.howToPlay.starting.items)}
-
-              <h3>{selectedContent.howToPlay.battle.title}</h3>
-              {renderList(selectedContent.howToPlay.battle.items)}
-            </div>
-          </div>
-        );
-      };
-
-      const container = document.getElementById('how-to-play');
-      const root = ReactDOM.createRoot(container);
-      root.render(<HowToPlay />);
-    </script>
-  </body>
-</html>
+  );
+};
