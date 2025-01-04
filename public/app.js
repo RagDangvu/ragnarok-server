@@ -34,7 +34,7 @@ const muteBtn = document.getElementById('mute-btn');
   if (muteBtn) {
     muteBtn.addEventListener('click', toggleSound);
   }
-
+const socket = io("https://ragnarok-server.onrender.com");
 const rotateScreenBtn = document.getElementById('rotate-screen-btn');
 if (rotateScreenBtn) {
   rotateScreenBtn.addEventListener('click', () => {
@@ -205,7 +205,7 @@ if (gameMode === 'singlePlayer') {
   }
 
   // Khởi tạo socket với thông tin phòng
-  const socket = io("https://ragnarok-server.onrender.com");{
+  const socket = io({
     query: {
       roomId: urlParams.get('room'),
       username: urlParams.get('username')
