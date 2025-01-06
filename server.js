@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://ragnarok-server.onrender.com",
+        origin: "*",
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -30,7 +30,7 @@ const io = new Server(httpServer, {
 const rooms = new Map();
 
 io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
+    console.log(`User connected: ${socket.id}`);
 
     // Handle joining a room
     socket.on('join-room', ({ roomId, username }) => {
@@ -83,10 +83,13 @@ io.on('connection', (socket) => {
 
                 if (room.players.length === 0) {
                     rooms.delete(roomId);
+                } else {
+                    room.gameState = 'waiting';
                 }
                 break;
             }
         }
+        console.log(`User disconnected: ${socket.id}`);
     });
 });
 
